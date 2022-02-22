@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node server.js",
-    "build": "esbuild public/src/app.js --bundle --outfile=public/app.js --minify"
+    "build": "esbuild public/src/app.js --bundle --outfile=public/app.js --minify",
+    "serve": "npm rum build && npm run test"
   },
   "author": "",
   "license": "ISC",

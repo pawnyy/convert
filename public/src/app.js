@@ -8,8 +8,15 @@ const transcode = async ({ target: { files } }) => {
         await ffmpeg.load();
     }
 
-    for (let file of files) {
+    for (let i = 1; i<=files.length; i++) {
+        let file = files[i-1]
         const name = file.name;
+
+        let elem = document.createElement('a')
+        elem.innerText = `(${i}/${files.length}) Loading... ${name.replace(name.substr(name.lastIndexOf('.')), '')}.mp3`
+        document.body.appendChild(elem)
+        document.body.appendChild(document.createElement('br'))
+
         const arrayBuffer = await file.arrayBuffer()
         const uint8Array = new Uint8Array(arrayBuffer);
         ffmpeg.FS("writeFile", name, uint8Array);
@@ -17,12 +24,9 @@ const transcode = async ({ target: { files } }) => {
         const data = ffmpeg.FS('readFile', 'test.mp3');
         // const track = document.getElementById("track");
         // track.src = URL.createObjectURL(new Blob([data.buffer], { type: 'audio/mpeg' }));
-        let elem = document.createElement("a")
         elem.href = URL.createObjectURL(new Blob([data.buffer], { type: 'audio/mpeg' }))
         elem.download = name.replace(name.substr(name.lastIndexOf('.')), '') + '.mp3'
         elem.innerText = name.replace(name.substr(name.lastIndexOf('.')), '') + '.mp3'
-        document.body.appendChild(elem)
-        document.body.appendChild(document.createElement('br'))
     }
 
 }
