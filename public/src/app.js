@@ -10,7 +10,6 @@ const transcode = async ({ target: { files } }) => {
 
     for (let file of files) {
         const name = file.name;
-        // This loads up the ffmpeg.wasm files from a CDN
         const arrayBuffer = await file.arrayBuffer()
         const uint8Array = new Uint8Array(arrayBuffer);
         ffmpeg.FS("writeFile", name, uint8Array);
