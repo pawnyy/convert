@@ -20,8 +20,8 @@ const transcode = async ({ target: { files } }) => {
         // track.src = URL.createObjectURL(new Blob([data.buffer], { type: 'audio/mpeg' }));
         let elem = document.createElement("a")
         elem.href = URL.createObjectURL(new Blob([data.buffer], { type: 'audio/mpeg' }))
-        elem.download = name + '.mp3'
-        elem.innerText = name + '.mp3'
+        elem.download = name.replace(name.substr(name.lastIndexOf('.')), '') + '.mp3'
+        elem.innerText = name.replace(name.substr(name.lastIndexOf('.')), '') + '.mp3'
         document.body.appendChild(elem)
         document.body.appendChild(document.createElement('br'))
     }
