@@ -1,0 +1,17 @@
+{
+  "name": "convert",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node server.js",
+    "build": "esbuild public/src/app.js --bundle --outfile=public/app.js --minify"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.10.1",
+    "esbuild": "^0.14.23",
+    "express": "^4.17.3"
+  }
+}
