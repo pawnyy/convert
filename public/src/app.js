@@ -9,7 +9,7 @@ const transcode = async ({ target: { files } }) => {
         loading.innerText = `Starting loading... ${files.length} files will be processed`
         document.body.appendChild(loading)
         await ffmpeg.load();
-        elem.style.display = 'none'
+        loading.style.display = 'none'
     }
 
     for (let i = 1; i<=files.length; i++) {
