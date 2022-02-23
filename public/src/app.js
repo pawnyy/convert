@@ -5,7 +5,11 @@ const ffmpeg = createFFmpeg({ log: true });
 const transcode = async ({ target: { files } }) => {
     console.log(files)
     if (!ffmpeg.isLoaded()) {
+        let loading = document.createElement('a')
+        loading.innerText = `Starting loading... ${files.length} files will be processed`
+        document.body.appendChild(loading)
         await ffmpeg.load();
+        elem.style.display = 'none'
     }
 
     for (let i = 1; i<=files.length; i++) {
