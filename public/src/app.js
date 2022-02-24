@@ -3,7 +3,7 @@ const { createFFmpeg } = require('@ffmpeg/ffmpeg');
 const ffmpeg = createFFmpeg({ log: true });
 const button = document.getElementById('processBtn')
 
-const transcode = async ({ target: { files } }) => {
+const process = async (files) => {
     console.log(files)
     if (!ffmpeg.isLoaded()) {
         let loading = document.createElement('a')
@@ -37,13 +37,12 @@ const transcode = async ({ target: { files } }) => {
         elem.innerText = name.replace(name.substr(name.lastIndexOf('.')), '') + '.'+format
     }
     button.disabled = false;
-
 }
+
 const uploader = document.getElementById('uploader')
-uploader.addEventListener('change', transcode);
 
 button.onclick = async () =>{
-    await transcode(uploader)
+    await process(uploader.files)
 }
 
 
