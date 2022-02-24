@@ -1,6 +1,7 @@
 const { createFFmpeg } = require('@ffmpeg/ffmpeg');
 // The log true is optional, shows ffmpeg logs in the console
 const ffmpeg = createFFmpeg({ log: true });
+const button = document.getElementById('processBtn')
 
 const transcode = async ({ target: { files } }) => {
     console.log(files)
@@ -11,6 +12,7 @@ const transcode = async ({ target: { files } }) => {
         await ffmpeg.load();
         loading.style.display = 'none'
     }
+    button.disabled = true;
 
     for (let i = 1; i<=files.length; i++) {
         let file = files[i-1]
@@ -34,7 +36,14 @@ const transcode = async ({ target: { files } }) => {
         elem.download = name.replace(name.substr(name.lastIndexOf('.')), '') + '.'+format
         elem.innerText = name.replace(name.substr(name.lastIndexOf('.')), '') + '.'+format
     }
+    button.disabled = false;
 
 }
 const uploader = document.getElementById('uploader')
 uploader.addEventListener('change', transcode);
+
+button.onclick = async () =>{
+    await transcode(uploader)
+}
+
+
