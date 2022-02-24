@@ -6,19 +6,34 @@
     <title>covert to mp3 | pawnyy.codes</title>
     <script src="app.js" async defer></script>
 </head>
-<body>
-    <select name="format" id="formatDd"> 
-        <option value="mp3">MP3</option>
-        <option value="wav">WAV</option>
-        <option value="m4a">M4A</option>
-    </select>
-    <input type="file" id="uploader" multiple>
+<body style="display: block;" class="padding">
+    <label for="formatDd" class="padding">Format: </label>
+        <select name="format" id="formatDd" class="margin">
+            <option value="mp3">MP3</option>
+            <option value="wav">WAV</option>
+            <option value="m4a">M4A</option>
+        </select>
+    <br style="height: 1vh;">
+    <input type="file" id="uploader" multiple class="padding">
+    <br>
+    <button id="processBtn" class="margin">Process</button>
     <p>INSTRUCTIONS: <br>
     Click 'Choose Files' which will open up your file explorer. HOLD CTRL (bottom left of keyboard) and select all .wav or .m4a files, then press 'Open'<br>
+    Click 'Process' to start processing.<br>
     When done, click all the files you want to download.<br>
     The Dropdown can be ignored, it should be set to .mp3</p>
 <!--<div>-->
 <!--    <audio id="track" controls></audio>-->
 <!--</div>-->
 </body>
+<style>
+    .padding {
+        padding: 5px 0;
+    }
+    .margin {
+        margin: 5px 0;
+    }
+</style>
 </html>
+
+
