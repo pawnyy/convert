@@ -5,6 +5,7 @@ const button = document.getElementById('processBtn')
 
 const process = async (files) => {
     console.log(files)
+    button.disabled = true;
     if (!ffmpeg.isLoaded()) {
         let loading = document.createElement('a')
         loading.innerText = `Starting loading... ${files.length} files will be processed`
@@ -12,7 +13,6 @@ const process = async (files) => {
         await ffmpeg.load();
         loading.style.display = 'none'
     }
-    button.disabled = true;
 
     for (let i = 1; i<=files.length; i++) {
         let file = files[i-1]
