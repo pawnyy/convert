@@ -2,6 +2,7 @@ const { createFFmpeg } = require('@ffmpeg/ffmpeg');
 // The log true is optional, shows ffmpeg logs in the console
 const ffmpeg = createFFmpeg({ log: true });
 const button = document.getElementById('processBtn')
+const autoDownload = document.getElementById('autoDownload')
 
 const process = async (files) => {
     console.log(files)
@@ -35,6 +36,9 @@ const process = async (files) => {
         elem.href = URL.createObjectURL(new Blob([data.buffer], { type: 'audio/mpeg' }))
         elem.download = name.replace(name.substr(name.lastIndexOf('.')), '') + '.'+format
         elem.innerText = name.replace(name.substr(name.lastIndexOf('.')), '') + '.'+format
+        if (autoDownload.checked) {
+            elem.click()
+        }
     }
     button.disabled = false;
 }
