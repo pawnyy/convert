@@ -7,15 +7,21 @@
     <script src="app.js" async defer></script>
 </head>
 <body style="display: block;" class="padding">
+    <input type="file" id="uploader" multiple class="padding">
+    <fieldset>
+        <legend>Settings</legend>
     <label for="formatDd" class="padding">Format: </label>
         <select name="format" id="formatDd" class="margin">
             <option value="mp3">MP3</option>
             <option value="wav">WAV</option>
             <option value="m4a">M4A</option>
         </select>
-    <br style="height: 1vh;">
-    <input type="file" id="uploader" multiple class="padding">
     <br>
+    <label for="autoDownload" class="padding">Automatic Download</label>
+    <input type="checkbox" id="autoDownload">
+    </fieldset>
+    <br style="height: 1vh;">
+     
     <button id="processBtn" class="margin">Process</button>
     <p>INSTRUCTIONS: <br>
     Click 'Choose Files' which will open up your file explorer. HOLD CTRL (bottom left of keyboard) and select all .wav or .m4a files, then press 'Open'<br>
@@ -32,6 +38,9 @@
     }
     .margin {
         margin: 5px 0;
+    }
+    fieldset {
+        max-width: 25em;
     }
 </style>
 </html>
