@@ -3,6 +3,7 @@ const { createFFmpeg } = require('@ffmpeg/ffmpeg');
 const ffmpeg = createFFmpeg({ log: true });
 const button = document.getElementById('processBtn')
 const autoDownload = document.getElementById('autoDownload')
+const downloadArea = document.getElementById('downloadArea')
 
 const process = async (files) => {
     console.log(files)
@@ -10,11 +11,11 @@ const process = async (files) => {
     if (!ffmpeg.isLoaded()) {
         let loading = document.createElement('a')
         loading.innerText = `Starting loading... ${files.length} files will be processed`
-        document.body.appendChild(loading)
+        downloadArea.appendChild(loading)
         await ffmpeg.load();
         loading.style.display = 'none'
     }
-
+    downloadArea.innerHTML = ''
     for (let i = 1; i<=files.length; i++) {
         let file = files[i-1]
         const name = file.name;
@@ -23,8 +24,8 @@ const process = async (files) => {
 
         let elem = document.createElement('a')
         elem.innerText = `(${i}/${files.length}) Loading... ${name.replace(name.substr(name.lastIndexOf('.')), '')}.${format}`
-        document.body.appendChild(elem)
-        document.body.appendChild(document.createElement('br'))
+        downloadArea.appendChild(elem)
+        downloadArea.appendChild(document.createElement('br'))
 
         const arrayBuffer = await file.arrayBuffer()
         const uint8Array = new Uint8Array(arrayBuffer);
